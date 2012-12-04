@@ -1,0 +1,31 @@
+{
+    "name": "caferrari/zf2-simple-crud-module",
+    "description": "Zend Framework 2 Module that provides a collection of abstract classes do simplify the Crud work with Doctrine ORM",
+    "type": "library",
+    "license": "BSD-3-Clause",
+    "keywords": [
+        "doctrine",
+        "orm",
+        "module",
+        "zf2",
+        "crud"
+    ],
+    "homepage": "http://ferrari.eti.br/",
+    "authors": [
+        {
+            "name": "Carlos André Ferrari",
+            "email": "caferrari@gmail.com"
+        }
+    ],
+    "require": {
+        "php": ">=5.3.3",
+        "doctrine/doctrine-orm-module": "dev-master",
+        "zendframework/zendframework": "2.*"
+    },
+    "minimum-stability": "alpha",
+    "autoload": {
+        "psr-0": {
+            "Crud\\": "src/"
+        }
+    }
+}
