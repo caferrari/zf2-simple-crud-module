@@ -65,7 +65,7 @@ abstract class AbstractController extends AbstractActionController
         if ($request->isPost()) {
             $form->setData($request->getPost());
             if ($form->isValid()) {
-                $this->getRepository()->insert($request->getPost()->toArray());
+                $this->getRepository()->insert($form->getData());
                 $this->success($this->getMessage('insert', 'success'));
                 $this->redirect()->toRoute('crud', array('controller' => $this->controller));
             } else {
@@ -85,7 +85,8 @@ abstract class AbstractController extends AbstractActionController
         if ($request->isPost()) {
             $form->setData($request->getPost());
             if ($form->isValid()) {
-                $this->getRepository()->update($request->getPost()->toArray());
+                var_dump($form->getData());
+                $this->getRepository()->update($form->getData());
                 $this->success($this->getMessage('edit', 'success'));
                 return $this->redirect()->toRoute('crud', array('controller' => $this->controller));
             } else {
