@@ -30,11 +30,6 @@ abstract class AbstractController extends AbstractActionController
         )
     );
 
-    protected $legends = array(
-        'insert' => 'Adicionar um novo item',
-        'edit' => 'Editar item'
-    );
-
     public function __construct()
     {
         $class = get_called_class();
@@ -42,8 +37,6 @@ abstract class AbstractController extends AbstractActionController
         $this->entity = str_replace('\Controller\\', '\Entity\\', $class);
         $this->form = str_replace('\Controller\\', '\Form\\', $class);
         $this->controller = trim(strtolower(preg_replace('@([A-Z])@', "-$1", explode('\\', $class)[2])), '-');
-
-        $this->layout()->legend = $this->legends['insert'];
     }
 
     public function indexAction()
@@ -85,7 +78,6 @@ abstract class AbstractController extends AbstractActionController
         if ($request->isPost()) {
             $form->setData($request->getPost());
             if ($form->isValid()) {
-                var_dump($form->getData());
                 $this->getRepository()->update($form->getData());
                 $this->success($this->getMessage('edit', 'success'));
                 return $this->redirect()->toRoute('crud', array('controller' => $this->controller));
@@ -149,7 +141,7 @@ abstract class AbstractController extends AbstractActionController
     {
         $dontMap = array('entityManager', 'service', 'entity', 'eventIdentifier',
                          'plugins', 'request', 'response', 'event', 'events',
-                         'serviceLocator', 'controller');
+                         'serviceLocator', 'controller', 'messages', 'editView');
 
         $localVars = array_keys(get_object_vars($this));
 
